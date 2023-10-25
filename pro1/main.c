@@ -43,9 +43,10 @@ int main() {
                 break;
             case 't':
                 addToSystem(&file, v, &n, &ids, &position, &type, &value, &time, &date, &arraySize);
+                print(ids, position, type, value, time, date, arraySize);
                 break;
             case 'v':
-                readFile(&file, &v, n);
+                readFile(&file, &v, n, ids, position, type, value, time, date, arraySize);
                 break;
             default:
                 break;

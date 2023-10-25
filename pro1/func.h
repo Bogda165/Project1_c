@@ -56,6 +56,18 @@ void addFloatToArrayCorrect(float** array, const int* arraySize, const float new
     (*array) = tmp;
 }
 
+void print(char** ids, char** position, char** type, float *value, char** time, char** date, int arraySize){
+    for(int i = 0; i < arraySize; i++){
+        printf("%s\n", ids[i]);
+        printf("%s\n", position[i]);
+        printf("%s\n", type[i]);
+        printf("%f\n", value[i]);
+        printf("%s\n", time[i]);
+        printf("%s\n", date[i]);
+        printf("\n");
+    }
+}
+
 
 void addToSystem(FILE** file, const int v, int* n , char*** ids, char*** position, char*** type, float **value, char*** time, char*** date, int* arraySize){
     
@@ -91,7 +103,6 @@ void addToSystem(FILE** file, const int v, int* n , char*** ids, char*** positio
         while(fscanf(*file, "%s\n%s\n%s\n%f\n%s\n%s\n", tmp_ids, tmp_position, tmp_type, &tmp_value, tmp_time, tmp_date) == 6){
             //add size to arrays
             //reading from file
-            printf("%s\n%s\n%s\n%f\n%s\n%s\n\n", tmp_ids, tmp_position, tmp_type, tmp_value, tmp_time, tmp_date);
 
             (*arraySize)++;
             addStringToArrayCorrect(ids, arraySize, tmp_ids, 5);
@@ -101,35 +112,14 @@ void addToSystem(FILE** file, const int v, int* n , char*** ids, char*** positio
             addStringToArrayCorrect(time, arraySize, tmp_date, 8);
             addFloatToArrayCorrect(value, arraySize, tmp_value);
             
-            printf("%s\n", (*ids)[*arraySize - 1]);
-            printf("%s\n", (*position)[*arraySize - 1]);
-            printf("%s\n", (*type)[*arraySize - 1]);
-            printf("%f\n", (*value)[*arraySize - 1]);
-            printf("%s\n", (*date)[*arraySize - 1]);
-            printf("%s\n", (*time)[*arraySize - 1]);
-            printf("\n");
         }
-        //print for test
-        
-        printf("Size: %d\n", *arraySize);
-        for(int i = 0; i < *arraySize; i++){
-            printf("%s\n", (*ids)[i]);
-            printf("%s\n", (*position)[i]);
-            printf("%s\n", (*type)[i]);
-            printf("%f\n", (*value)[i]);
-            printf("%s\n", (*date)[i]);
-            printf("%s\n", (*time)[i]);
-            printf("\n");
-        }
-        
-        
-        
+
     }else{
         printf("Neotvoreny subor.\n");
     }
 }
 
-void readFile(FILE** file, int* v, const int n){
+void readFile(FILE** file, int* v, const int n, char** ids, char** position, char** type, float *value, char** time, char** date, int arraySize){
     char tmp_ids[6];
     char tmp_position[15];
     char tmp_type[3];
@@ -150,6 +140,8 @@ void readFile(FILE** file, int* v, const int n){
                 
             }else{
                 //print from arrays
+                //printf("Printed from arrays\n");
+                print(ids, position, type, value, time, date, arraySize);
             }
         }else{
             printf("Neotvoreny subor\n");
