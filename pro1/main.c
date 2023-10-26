@@ -41,12 +41,24 @@ int main() {
             case 'k':
                 fclose(file);
                 break;
-            case 't':
+            case 'n':
                 addToSystem(&file, v, &n, &ids, &position, &type, &value, &time, &date, &arraySize);
                 print(ids, position, type, value, time, date, arraySize);
                 break;
             case 'v':
                 readFile(&file, &v, n, ids, position, type, value, time, date, arraySize);
+                break;
+            case 'c':
+                arraySize--;
+                printf("------------------------\n");
+                delStringToArray(&ids, arraySize, 2, 5);
+                delStringToArray(&position, arraySize, 2, 14);
+                delStringToArray(&type, arraySize, 2, 2);
+                //delStringToArray(&value, arraySize, 2, 15);
+                delStringToArray(&time, arraySize, 2, 4);
+                delStringToArray(&date, arraySize, 2, 8);
+        
+                print(ids, position, type, value, time, date, arraySize);
                 break;
             default:
                 break;

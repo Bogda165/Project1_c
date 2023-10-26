@@ -35,7 +35,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/bogdankoval/Documents/&#x414;&#x43e;&#x43a;&#x443;&#x43c;&#x435;&#x43d;&#x442;&#x44b; &#x2014; MacBook Air&#xa0;&#x2014; &#x411;&#x43e;&#x433;&#x434;&#x430;&#x43d;/Univer/PP/C/pro1/pro1"
+      customWorkingDirectory = "/Users/bogdankoval/Documents/&#x414;&#x43e;&#x43a;&#x443;&#x43c;&#x435;&#x43d;&#x442;&#x44b; &#x2014; MacBook Air&#xa0;&#x2014; &#x411;&#x43e;&#x433;&#x434;&#x430;&#x43d;/Univer/PP/Projects_files"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"

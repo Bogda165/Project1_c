@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+// in ADD and DELEETE methods change array size before!!!!!!!!!!!!!!!!!!
 void addStringToArrayCorrect(char*** array, const int* arraySize, const char* newString, int stringLength){
     char** tmp = (char**)malloc(*arraySize * sizeof(char*));
     if((*arraySize) != 1){
@@ -37,6 +37,54 @@ void addStringToArrayCorrect(char*** array, const int* arraySize, const char* ne
     (*array) = tmp;
 }
 
+void delStringFromArray(char*** array, const int arraySize, const int index, const int stringLength){
+    char** tmp = (char**)malloc(arraySize * sizeof(char*));
+    int del = 0;
+    for(int i = 0; i < arraySize; i++){
+        if (i == index){
+            del = 1;
+        }
+        tmp[i] = (char*)malloc((stringLength + 1) * sizeof(char*));
+        for(int j = 0; j < stringLength; j++){
+            tmp[i][j] = (*array)[i + del][j];
+        }
+        tmp[i][stringLength] = '\0';
+    }
+    if(arraySize > 1){
+        for(int i = 0; i < arraySize - 1; i++){
+            
+            free((*array)[i]);
+        }
+        free((*array));
+    }
+    
+    (*array) = tmp;
+}
+
+void DelFloatFromArrayCorrect(float** array, const int* arraySize, const float newFloat, const int index){
+    float* tmp = (float*)malloc(*arraySize * sizeof(float));
+    int del = 0;
+    if((*arraySize != 0)){
+        for(int i = 0; i < *arraySize - 1; i++){
+            if (i == index){
+                del = 1;
+            }
+            tmp[i] = (*array)[i];
+        }
+    }
+    
+    tmp[*arraySize - 1] = newFloat;
+    
+    //memory
+    if(*arraySize > 1){
+        free((*array));
+    }
+    
+    
+    (*array) = tmp;
+}
+
+
 void addFloatToArrayCorrect(float** array, const int* arraySize, const float newFloat){
     float* tmp = (float*)malloc(*arraySize * sizeof(float));
     if((*arraySize != 0)){
@@ -65,6 +113,12 @@ void print(char** ids, char** position, char** type, float *value, char** time, 
         printf("%s\n", time[i]);
         printf("%s\n", date[i]);
         printf("\n");
+    }
+}
+
+void print_c(char** ids, const int arraySize){
+    for(int i = 0; i < arraySize; i++){
+        printf("%s\n", ids[i]);
     }
 }
 
@@ -149,4 +203,39 @@ void readFile(FILE** file, int* v, const int n, char** ids, char** position, cha
     }else{
         printf("Subor uz bol otvereny\n");
     }
+}
+int compare_string(char* str1, char* str2, int size){
+    
+    for(int i = 0; i < size; i++){
+        if (str1[i] != str2[i]){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void case_s(const int n, char** ids, char** type, char** date, char** time, float* value, char** position, int arraySize, char* id_v, char* type_v){
+    
+    FILE* file;
+    file = fopen("vystup_S.txt", "w");
+    
+    if(file != NULL){
+        if(n == 0){
+            printf("Polia nie su vytvorene.\n");
+        }else{
+            
+            //deelete every thing exept input
+            
+            for(int i = 0; i < arraySize; i++){
+                if(compare_string(ids[i], id_v, 2) != 0){
+                    //delete
+                }
+            }
+            
+            printf("Pre dany vstup je vytvoreny txt subor\n");
+        }
+    }else{
+        printf("Pre dany vstup nie je vytvoreny txt subor.\n");
+    }
+    fclose(file);
 }
