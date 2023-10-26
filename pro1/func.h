@@ -61,22 +61,21 @@ void delStringFromArray(char*** array, const int arraySize, const int index, con
     (*array) = tmp;
 }
 
-void DelFloatFromArrayCorrect(float** array, const int* arraySize, const float newFloat, const int index){
-    float* tmp = (float*)malloc(*arraySize * sizeof(float));
+void DelFloatFromArrayCorrect(float** array, const int arraySize, const int index){
+    float* tmp = (float*)malloc(arraySize * sizeof(float));
     int del = 0;
-    if((*arraySize != 0)){
-        for(int i = 0; i < *arraySize - 1; i++){
+    if((arraySize != 0)){
+        for(int i = 0; i < arraySize; i++){
             if (i == index){
                 del = 1;
             }
-            tmp[i] = (*array)[i];
+            tmp[i] = (*array)[i + del];
         }
     }
     
-    tmp[*arraySize - 1] = newFloat;
     
     //memory
-    if(*arraySize > 1){
+    if(arraySize > 1){
         free((*array));
     }
     
@@ -132,7 +131,7 @@ void addToSystem(FILE** file, const int v, int* n , char*** ids, char*** positio
     char tmp_time[5];
     char tmp_date[9];
     
-    if(v == 1 || v == 0){
+    if(v == 1){
         //clead memory
         if(*n == 1){
             for(int i = 0; i < *arraySize; i++){
@@ -197,6 +196,8 @@ void readFile(FILE** file, int* v, const int n, char** ids, char** position, cha
                 //printf("Printed from arrays\n");
                 print(ids, position, type, value, time, date, arraySize);
             }
+            *v = 1;
+            
         }else{
             printf("Neotvoreny subor\n");
         }

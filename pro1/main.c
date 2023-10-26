@@ -51,12 +51,12 @@ int main() {
             case 'c':
                 arraySize--;
                 printf("------------------------\n");
-                delStringToArray(&ids, arraySize, 2, 5);
-                delStringToArray(&position, arraySize, 2, 14);
-                delStringToArray(&type, arraySize, 2, 2);
-                //delStringToArray(&value, arraySize, 2, 15);
-                delStringToArray(&time, arraySize, 2, 4);
-                delStringToArray(&date, arraySize, 2, 8);
+                delStringFromArray(&ids, arraySize, 2, 5);
+                delStringFromArray(&position, arraySize, 2, 14);
+                delStringFromArray(&type, arraySize, 2, 2);
+                DelFloatFromArrayCorrect(&value, arraySize, 2);
+                delStringFromArray(&time, arraySize, 2, 4);
+                delStringFromArray(&date, arraySize, 2, 8);
         
                 print(ids, position, type, value, time, date, arraySize);
                 break;
