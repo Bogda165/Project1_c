@@ -65,8 +65,19 @@ int main() {
             case '0':
                 print(ids, position, type, value, time, date, arraySize);
             case 't':
-                printf("Answer: %lf: ", convert_work(0, 6, 7, position[0]));
-                printf("%c", position[0][7]);
+                /*check swap
+                for(int i = 0; i < arraySize; i++){
+                    printf("%s\n", ids[i]);
+                }
+                swap_string(&ids, 0, arraySize - 1, 5);
+                printf("\nSwap:::\n\n");
+                for(int i = 0; i < arraySize; i++){
+                    printf("%s\n", ids[i]);
+                }
+                 */
+                //sort(&type, &date, &time, &value, &position, arraySize);
+                //printf("%d->%s%s\n", find_min(date, time, arraySize, 0), date[find_min(date, time, arraySize, 0)], time[find_min(date, time, arraySize, 0)]);
+                print(ids, position, type, value, time, date, arraySize);
                 break;
             case 's':
                 case_s(n, ids, type, date, time, value, position, arraySize);

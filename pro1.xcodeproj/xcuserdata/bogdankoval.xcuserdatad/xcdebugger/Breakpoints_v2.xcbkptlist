@@ -39,22 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5FB634E8-E458-4536-A9BF-32346D36A144"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "pro1/func.h"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
-            landmarkName = "addToSystem(file, v, n, ids, position, type, value, time, date, arraySize)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "943E4B9E-6D92-430B-83FD-785A9C6CDD4B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -65,22 +49,6 @@
             startingLineNumber = "29"
             endingLineNumber = "29"
             landmarkName = "addStringToArrayCorrect(array, arraySize, newString, stringLength)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B5BD510D-9413-4F31-8C6E-C6D3D84C5A4E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "pro1/func.h"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "addToSystem(file, v, n, ids, position, type, value, time, date, arraySize)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

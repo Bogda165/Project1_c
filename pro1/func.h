@@ -176,8 +176,8 @@ void addToSystem(FILE** file, const int v, int* n , char*** ids, char*** positio
             addStringToArrayCorrect(ids, arraySize, tmp_ids, 5);
             addStringToArrayCorrect(position, arraySize, tmp_position, 14);
             addStringToArrayCorrect(type, arraySize, tmp_type, 2);
-            addStringToArrayCorrect(date, arraySize, tmp_time, 4);
-            addStringToArrayCorrect(time, arraySize, tmp_date, 8);
+            addStringToArrayCorrect(date, arraySize, tmp_date, 8);
+            addStringToArrayCorrect(time, arraySize, tmp_time, 4);
             addFloatToArrayCorrect(value, arraySize, tmp_value);
             
         }
@@ -228,9 +228,9 @@ int compare_string(char* str1, char* str2, int size){
     return 1;
 }
 // set copry string 1 to string 2
-void copy_string(char* str1, char* str2, int size){
+void copy_string(char** str1, char** str2, int size){
     for(int i = 0; i < size; i++){
-        str2[i] = str1[i];
+        (*str2)[i] = (*str1)[i];
     }
 }
 
@@ -298,9 +298,68 @@ double convert_work(const int beg, const int end, int size, char* str){
     return a + b;
 }
 
-void sort(char ***type, char ***date, char ***time, float **value, char*** position, const int size){
-    for(int i = 0; i < size; i++){
-        
+long double convert_to_int2(char* str1, char* str2, const int size1, const int size2){
+    long double answer = 0;
+    
+    for(int i = 0; i < size1; i++){
+        answer += str1[i] - '0';
+        answer *= 10;
+    }
+    //printf("answer:%Lf\n", answer);
+    for(int i = 0; i < size2; i++){
+        answer += str2[i] - '0';
+        answer *= 10;
+    }
+    return answer / 10;
+}
+
+int find_min(char** date, char** time, const int size, const int beg){
+    long double min = convert_to_int2(date[beg], time[beg], 8, 4);
+    int index = beg;
+    for(int i = beg + 1; i < size; i++){
+        if(min > convert_to_int2(date[i], time[i], 8, 4)){
+            min = convert_to_int2(date[i], time[i], 8, 4);
+            index = i;
+        }
+    }
+    
+    return index;
+}
+
+void swap_string(char ***str, int index1, int index2, const int length){
+    char *tmp = (char*)malloc(sizeof(char) * length);
+    //printf("str1:%s str2:%s tmp:%s\n", (*str)[index1], (*str)[index2], tmp);
+    copy_string(&(*str)[index1], &tmp, length);
+    //printf("str1:%s str2:%s tmp:%s\n", (*str)[index1], (*str)[index2], tmp);
+    copy_string(&(*str)[index2], &(*str)[index1], length);
+    //printf("str1:%s str2:%s tmp:%s\n", (*str)[index1], (*str)[index2], tmp);
+    copy_string(&tmp, &(*str)[index2], length);
+    //printf("str1:%s str2:%s tmp:%s\n", (*str)[index1], (*str)[index2], tmp);
+}
+
+void swap_double(double** value, int index1, int index2){
+    double tmp = (*value)[index1];
+    (*value)[index1] = (*value)[index2];
+    (*value)[index2] = tmp;
+}
+void swap_float(float** value, int index1, int index2){
+    float tmp = (*value)[index1];
+    (*value)[index1] = (*value)[index2];
+    (*value)[index2] = tmp;
+}
+
+void sort(char ***type, char ***date, char ***time, float **value, double** position_1, double** position_2, const int size){
+    for(int i = 0; i < size - 1; i++){
+        int min_index = find_min(*date, *time, size, i);
+        //printf("%d->%s\n", min_index, (*time)[i]);
+        //printf("%s %s\n", (*date[i]), (*time)[i]);
+        //swap_string(type, i, find_min(*date, *time, size, i), 2);
+        swap_string(type, i, min_index, 2);
+        swap_string(date, i, min_index, 8);
+        swap_string(time, i, min_index, 4);
+        swap_float(value, i, min_index);
+        swap_double(position_1, i, min_index);
+        swap_double(position_2, i, min_index);
     }
 }
 
@@ -331,7 +390,6 @@ void case_s(const int n, char** ids, char** type, char** date, char** time, floa
             for(int i = 0; i < arraySize; i++){
                 //printf("First: %s", id_tmp_tmp);
                 //printf("Second: %s\n", ids[i]);
-                printf("Index %d enter?: ", i);
                 /*
                 if(compare_string(id_tmp_tmp, ids[i], 5) == 1){
                     position_tmp[i] = convert_work(0, 6, 7, position[i]);
@@ -344,7 +402,7 @@ void case_s(const int n, char** ids, char** type, char** date, char** time, floa
                     printf(" yes\n");
                 }
                  */
-                if(compare_string(id_tmp_tmp, ids[i], 5) == 1){
+                if(compare_string(id_tmp_tmp, ids[i], 5) == 1 && compare_string(type_tmp_tmp, type[i], 2) == 1){
                     size_tmp++;
                     addDoubleToArrayCorrect(&position_tmp, &size_tmp, convert_work(0, 6, 7, position[i]));
                     addDoubleToArrayCorrect(&position_tmp2, &size_tmp, convert_work(7, 13, 7, position[i]));
@@ -353,18 +411,19 @@ void case_s(const int n, char** ids, char** type, char** date, char** time, floa
                     addStringToArrayCorrect(&date_tmp, &size_tmp, date[i], 8);
                     addFloatToArrayCorrect(&value_tmp, &size_tmp, value[i]);
                     
-                    printf(" yes\n");
                 }
             }
             
             //sort array
             
+            sort(&type_tmp, &date_tmp, &time_tmp, &value_tmp, &position_tmp, &position_tmp2, size_tmp);
+            
             for(int i = 0; i < size_tmp; i++){
-                printf("%s", date_tmp[i]);
-                printf("%s\t", time_tmp[i]);
-                printf("%f\t", value_tmp[i]);
-                printf("%f\t", position_tmp[i]);
-                printf("%f\n", position_tmp2[i]);
+                fprintf(file, "%s", date_tmp[i]);
+                fprintf(file, "%s\t", time_tmp[i]);
+                fprintf(file, "%0.2f\t", value_tmp[i]);
+                fprintf(file, "%0.4lf\t", position_tmp[i]);
+                fprintf(file, "%0.4lf\n", position_tmp2[i]);
             }
             
             printf("Pre dany vstup je vytvoreny txt subor\n");
