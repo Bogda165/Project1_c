@@ -24,10 +24,11 @@
 
 /* Begin PBXFileReference section */
 		880CF50F2AF06A2F00DD3661 /* cases.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cases.h; sourceTree = "<group>"; };
+		880CF5102AF06BB000DD3661 /* myString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myString.h; sourceTree = "<group>"; };
+		880CF5112AF06C5700DD3661 /* PoweredNumbers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PoweredNumbers.h; sourceTree = "<group>"; };
 		88946C3B2ADC7F0E00B92C00 /* pro1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pro1; sourceTree = BUILT_PRODUCTS_DIR; };
 		88946C3E2ADC7F0E00B92C00 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		88946C452ADC7F5E00B92C00 /* func.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = func.h; sourceTree = "<group>"; };
-		88F1B24A2ADFAFEA0036DB7F /* function2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = function2.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +63,9 @@
 			children = (
 				88946C3E2ADC7F0E00B92C00 /* main.c */,
 				88946C452ADC7F5E00B92C00 /* func.h */,
-				88F1B24A2ADFAFEA0036DB7F /* function2.h */,
 				880CF50F2AF06A2F00DD3661 /* cases.h */,
+				880CF5102AF06BB000DD3661 /* myString.h */,
+				880CF5112AF06C5700DD3661 /* PoweredNumbers.h */,
 			);
 			path = pro1;
 			sourceTree = "<group>";
