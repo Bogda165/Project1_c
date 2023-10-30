@@ -43,7 +43,7 @@ int main() {
                 break;
             case 'n':
                 addToSystem(&file, v, &n, &ids, &position, &type, &value, &time, &date, &arraySize);
-                print(ids, position, type, value, time, date, arraySize);
+                //print(ids, position, type, value, time, date, arraySize);
                 break;
             case 'v':
                 readFile(&file, &v, n, ids, position, type, value, time, date, arraySize);
@@ -51,14 +51,25 @@ int main() {
             case 'c':
                 arraySize--;
                 printf("------------------------\n");
-                delStringFromArray(&ids, arraySize, 2, 5);
-                delStringFromArray(&position, arraySize, 2, 14);
-                delStringFromArray(&type, arraySize, 2, 2);
-                DelFloatFromArrayCorrect(&value, arraySize, 2);
-                delStringFromArray(&time, arraySize, 2, 4);
-                delStringFromArray(&date, arraySize, 2, 8);
+                delStringFromArray(&ids, arraySize, 0, 5);
+                delStringFromArray(&position, arraySize, 0, 14);
+                delStringFromArray(&type, arraySize, 0, 2);
+                delFloatFromArrayCorrect(&value, arraySize, 0);
+                delStringFromArray(&time, arraySize, 0, 4);
+                delStringFromArray(&date, arraySize, 0, 8);
         
+                break;
+            case 'z':
+                case_z(n, &ids, &position, &type, &value, &time, &date, &arraySize);
+                break;
+            case '0':
                 print(ids, position, type, value, time, date, arraySize);
+            case 't':
+                printf("Answer: %lf: ", convert_work(0, 6, 7, position[0]));
+                printf("%c", position[0][7]);
+                break;
+            case 's':
+                case_s(n, ids, type, date, time, value, position, arraySize);
                 break;
             default:
                 break;
