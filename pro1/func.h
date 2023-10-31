@@ -189,3 +189,18 @@ void sort(char ***type, char ***date, char ***time, float **value, double** posi
         swap_double(position_2, i, min_index);
     }
 }
+
+int in_list(char *str, char** array, int size, int length){
+    int k = 0;
+    for(int i = 0; i < size; i++){
+        //printf("%s %s->", str, array[i]);
+        if(compare_string(str, array[i], length) == 1){
+            //printf("yes\n");
+            k = 1;
+        }
+        //printf("no\n");
+    }
+    if(size == 0){return 1;}
+    return (k == 1)? 0: 1;
+}
+

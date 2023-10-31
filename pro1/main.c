@@ -18,6 +18,7 @@ int main() {
     //menu
     int v = 0;
     int n = 0;
+    int tmp_int_tmp = arraySize;
     
     /*
     arraySize ++;
@@ -39,6 +40,16 @@ int main() {
         
         switch(menu){
             case 'k':
+                tmp_int_tmp = arraySize;
+                for(int i = 0; i < tmp_int_tmp; i++){
+                    arraySize -= 1;
+                    delStringFromArray(&ids, arraySize, i, 5);
+                    delStringFromArray(&position, arraySize, i, 14);
+                    delStringFromArray(&type, arraySize, i, 2);
+                    delFloatFromArrayCorrect(&value, arraySize, i);
+                    delStringFromArray(&time, arraySize, i, 4);
+                    delStringFromArray(&date, arraySize, i, 8);
+                }
                 fclose(file);
                 break;
             case 'n':
@@ -49,14 +60,7 @@ int main() {
                 readFile(&file, &v, n, ids, position, type, value, time, date, arraySize);
                 break;
             case 'c':
-                arraySize--;
-                printf("------------------------\n");
-                delStringFromArray(&ids, arraySize, 0, 5);
-                delStringFromArray(&position, arraySize, 0, 14);
-                delStringFromArray(&type, arraySize, 0, 2);
-                delFloatFromArrayCorrect(&value, arraySize, 0);
-                delStringFromArray(&time, arraySize, 0, 4);
-                delStringFromArray(&date, arraySize, 0, 8);
+                
         
                 break;
             case 'z':
@@ -65,22 +69,13 @@ int main() {
             case '0':
                 print(ids, position, type, value, time, date, arraySize);
             case 't':
-                /*check swap
-                for(int i = 0; i < arraySize; i++){
-                    printf("%s\n", ids[i]);
-                }
-                swap_string(&ids, 0, arraySize - 1, 5);
-                printf("\nSwap:::\n\n");
-                for(int i = 0; i < arraySize; i++){
-                    printf("%s\n", ids[i]);
-                }
-                 */
-                //sort(&type, &date, &time, &value, &position, arraySize);
-                //printf("%d->%s%s\n", find_min(date, time, arraySize, 0), date[find_min(date, time, arraySize, 0)], time[find_min(date, time, arraySize, 0)]);
                 print(ids, position, type, value, time, date, arraySize);
                 break;
             case 's':
                 case_s(n, ids, type, date, time, value, position, arraySize);
+                break;
+            case 'h':
+                case_h(type, value, arraySize);
                 break;
             default:
                 break;

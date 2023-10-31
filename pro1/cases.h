@@ -146,7 +146,8 @@ void case_s(const int n, char** ids, char** type, char** date, char** time, floa
                 printf("Pre dany vstup je vytvoreny txt subor\n");
             }
             // delete[]
-            for(int i = 0; i < size_tmp; i++){
+            int tmp =  size_tmp;
+            for(int i = 0; i < tmp; i++){
                 size_tmp -= 1;
                 delStringFromArray(&type_tmp, size_tmp, i, 2);
                 delStringFromArray(&time_tmp, size_tmp, i, 4);
@@ -199,12 +200,41 @@ void case_z(const int n, char*** ids, char*** position, char*** type, float **va
         delStringFromArray(time, *arraySize, for_delete[i], 4);
         delStringFromArray(date, *arraySize, for_delete[i], 8);
     }
-    printf("%d", k + 1);
+    printf("Vymazalo sa : %d zaznamov !", k);
 }
 
+void oper_case_h(char **type, float *value, const int arraySize, char* str){
+    int amount = 0;
+    float min = 100000, max = -100000;
+    for(int i = 0; i < arraySize; i++){
+        if(compare_string(type[i], str, 2) == 1){
+            amount ++;
+            min = (min < value[i])? min: value[i];
+            max = (max > value[i])? max: value[i];
+        }
+    }
+    
+    printf("\t%s\t\t\t\t%d\t\t\t %0.2f\t %0.2f\n", str, amount, min, max);
+}
 
-void case_h(){
-    
-    
-    
+void case_h(char **type, float *value, const int arraySize){
+    char **array;
+    int array_size = 0;
+    for(int i = 0; i < arraySize; i++){
+        if(in_list(type[i], array, array_size, 2) == 1){
+            array_size += 1;
+            addStringToArrayCorrect(&array, &array_size, type[i], 2);
+        }
+    }
+    printf("Typ mer.vel.    Pocetnost\t\tMinimum  Maximum\n");
+
+    for(int i = 0; i < array_size; i++){
+        oper_case_h(type, value, arraySize, array[i]);
+    }
+    int tmp = array_size;
+    for(int i = 0; i < tmp; i++){
+        array_size -= 1;
+        delStringFromArray(&array, array_size, i, 2);
+    }
+    free(array);
 }
